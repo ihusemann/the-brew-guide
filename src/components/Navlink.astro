@@ -1,0 +1,21 @@
+---
+export type Link = {
+  label: string;
+  href: string;
+};
+
+type Props = Link;
+
+const { href, label } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+const isActive = pathname === href;
+---
+
+<a
+  href={href}
+  class:list={[
+    "text-lg font-semibold text-neutral-700 hover:text-neutral-900",
+    { "underline underline-offset-[6px] underline-neutral-800": isActive },
+  ]}>{label}</a
+>

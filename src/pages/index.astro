@@ -1,15 +1,49 @@
 ---
+import Container from "../layouts/Container.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <Container>
+    <div class="mx-auto mb-12 max-w-lg">
+      <h2 class="mt-8 text-3xl font-bold tracking-tight">
+        Lorem Ipsum Totally
+      </h2>
+
+      <p class="mt-2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
+        aut id quae aliquam nisi officiis alias sed, ad dolores ipsa, maiores
+        repellendus nam assumenda placeat necessitatibus quod architecto
+        laboriosam explicabo.
+      </p>
+      <p class="mt-8">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
+        aut id quae aliquam nisi officiis alias sed, ad dolores ipsa, maiores
+        repellendus nam assumenda placeat necessitatibus quod architecto
+        laboriosam explicabo.
+      </p>
+
+      <h2 class="mt-8 text-3xl font-bold tracking-tight">
+        Lorem Ipsum Totally
+      </h2>
+      <p class="mt-2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
+        aut id quae aliquam nisi officiis alias sed, ad dolores ipsa, maiores
+        repellendus nam assumenda placeat necessitatibus quod architecto
+        laboriosam explicabo.
+      </p>
+      <h2 class="mt-8 text-3xl font-bold tracking-tight">
+        Lorem Ipsum Totally
+      </h2>
+      <p class="mt-2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
+        aut id quae aliquam nisi officiis alias sed, ad dolores ipsa, maiores
+        repellendus nam assumenda placeat necessitatibus quod architecto
+        laboriosam explicabo. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Debitis voluptatibus ipsum, eaque minus dolorem incidunt dolor
+        similique eum dolore excepturi ex dolores saepe. Beatae necessitatibus,
+        voluptatibus magnam optio autem cupiditate?
+      </p>
+    </div>
+  </Container>
+</MainLayout>

@@ -1,23 +1,29 @@
 ---
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-
+import Header from "../components/Header";
+import Navlinks from "../components/Navlinks.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
 
-    <link rel="stylesheet" href="https://use.typekit.net/tjn4tzd.css">
+    <link rel="stylesheet" href="https://use.typekit.net/tjn4tzd.css" />
 
-		<title>The Brew Guide</title>
-	</head>
-	<body class="min-h-full min-w-full bg-white relative text-neutral-900">
-    <Header />
-		<slot />
-		<Footer />
-	</body>
+    <title>The Brew Guide</title>
+  </head>
+  <body
+    class="min-h-screen min-w-full bg-white relative text-neutral-900 flex flex-col"
+  >
+    <Header client:load>
+      <Navlinks />
+    </Header>
+    <div class="pt-20 grow">
+      <slot />
+    </div>
+    <Footer />
+  </body>
 </html>

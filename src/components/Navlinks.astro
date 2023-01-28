@@ -1,0 +1,17 @@
+---
+import type { Link } from "./Navlink.astro";
+import Navlink from "./Navlink.astro";
+
+const links: Link[] = [
+  {
+    label: "Guides",
+    href: "/guide",
+  },
+  {
+    label: "Recipes",
+    href: "/recipes",
+  },
+];
+---
+
+{links.map(({ label, href }) => <Navlink label={label} href={href} />)}
