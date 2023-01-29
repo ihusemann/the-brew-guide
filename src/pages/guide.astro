@@ -1,6 +1,6 @@
 ---
-import CheckIcon from "../components/CheckIcon.astro";
-import DownArrow from "../components/DownArrow.astro";
+import CheckIcon from "src/components/icons/CheckIcon.astro";
+import DownArrowIcon from "src/components/icons/DownArrowIcon.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 
 const steps = [
@@ -74,7 +74,7 @@ const gear = [
           class="border border-neutral-900 px-6 py-2 font-semibold text-lg flex items-center justify-center transition-all ease-in-out hover:bg-neutral-900 hover:text-white"
         >
           <span>Check it out</span>
-          <DownArrow class="h-5 w-5 stroke-2 ml-2" />
+          <DownArrowIcon class="h-5 w-5 stroke-2 ml-2" />
         </button>
       </div>
     </header>

@@ -20,7 +20,7 @@ const Header = ({ children }: Props) => {
           style={{ opacity: scrollYProgress }}
           className="absolute inset-0 bg-white shadow-md"
         />
-        <div className="absolute inset-0 mx-auto flex max-w-4xl items-center justify-between px-10 py-4">
+        <div className="absolute inset-0 mx-auto flex max-w-5xl items-center justify-between px-10 py-4">
           <a
             href="/"
             className="text-4xl font-black tracking-tighter text-neutral-900"

@@ -1,0 +1,38 @@
+---
+import type { GuideFrontmatter } from "@types";
+import Container from "src/layouts/Container.astro";
+import MainLayout from "src/layouts/MainLayout.astro";
+
+const allGuides = await Astro.glob<GuideFrontmatter>("../guides/*.mdx");
+---
+
+<MainLayout>
+  <div class="max-w-3xl mx-auto my-16">
+    <h1 class="text-7xl font-bold tracking-tighter">Coffee Guides</h1>
+    <div class="grid grid-cols-2 gap-4 mt-8">
+      {
+        allGuides.map(({ url, frontmatter }) => (
+          <article>
+            <a href={url} class="flex flex-col">
+              <div class="aspect-w-5 aspect-h-4 w-full">
+                <img
+                  src={frontmatter.image.src}
+                  alt={frontmatter.image.alt}
+                  class="object-cover object-center"
+                />
+              </div>
+              <h2 class="mt-2 text-2xl">
+                <span class="block font-bold">{frontmatter.title}</span>
+                {frontmatter.subtitle && (
+                  <span class="block font-serif italic">
+                    {frontmatter.subtitle}
+                  </span>
+                )}
+              </h2>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>

@@ -1,0 +1,25 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+import Header from "../components/Guide/Header.astro";
+import type { GuideFrontmatter } from "@types";
+import MainLayout from "./MainLayout.astro";
+
+type Props = MarkdownLayoutProps<GuideFrontmatter>
+
+const { frontmatter } = Astro.props;
+const { title, subtitle, description, tags, image } = frontmatter;
+---
+
+<MainLayout>
+  <article class="-mt-20 mb-12">
+    <Header
+      title={title}
+      subtitle={subtitle}
+      image={image}
+      description={description}
+      tags={tags}
+    />
+
+    <slot />
+  </article>
+</MainLayout>
