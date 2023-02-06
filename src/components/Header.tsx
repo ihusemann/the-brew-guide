@@ -2,7 +2,7 @@ import { useScroll, motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface Props {
-  children: ReactNode; 
+  children: ReactNode;
 }
 
 /**
@@ -25,9 +25,12 @@ const Header = ({ children }: Props) => {
             href="/"
             className="text-4xl font-black tracking-tighter text-neutral-900"
           >
-            The Brew Guide
+            <span className="hidden sm:block">The Brew Guide</span>
+            <span className="sm:hidden">TBG</span>
           </a>
-          <div className="flex items-center justify-end gap-x-8">{children}</div>
+          <div className="flex items-center justify-end gap-x-8">
+            {children}
+          </div>
         </div>
       </motion.div>
     </>

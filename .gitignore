@@ -20,3 +20,5 @@ pnpm-debug.log*
 
 .yarn/
 .yarn/*
+
+.astro

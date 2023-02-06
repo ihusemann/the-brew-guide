@@ -1,32 +1,33 @@
 ---
 import type { GuideFrontmatter } from "@types";
+import { getCollection } from "astro:content";
 import Container from "src/layouts/Container.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
 
-const allGuides = await Astro.glob<GuideFrontmatter>("../guides/*.mdx");
+// const allGuides = await Astro.glob<GuideFrontmatter>("../guides/*.mdx");
+
+const allGuides = await getCollection("guides");
 ---
 
 <MainLayout>
-  <div class="max-w-3xl mx-auto my-16">
+  <div class="mx-auto my-16 max-w-3xl">
     <h1 class="text-7xl font-bold tracking-tighter">Coffee Guides</h1>
-    <div class="grid grid-cols-2 gap-4 mt-8">
+    <div class="mt-8 grid grid-cols-2 gap-4">
       {
-        allGuides.map(({ url, frontmatter }) => (
+        allGuides.map(({ slug, data: { title, subtitle, image } }) => (
           <article>
-            <a href={url} class="flex flex-col">
+            <a href={`guides/${slug}`} class="flex flex-col">
               <div class="aspect-w-5 aspect-h-4 w-full">
                 <img
-                  src={frontmatter.image.src}
-                  alt={frontmatter.image.alt}
+                  src={image.src}
+                  alt={image.alt}
                   class="object-cover object-center"
                 />
               </div>
               <h2 class="mt-2 text-2xl">
-                <span class="block font-bold">{frontmatter.title}</span>
-                {frontmatter.subtitle && (
-                  <span class="block font-serif italic">
-                    {frontmatter.subtitle}
-                  </span>
+                <span class="block font-bold">{title}</span>
+                {subtitle && (
+                  <span class="block font-serif italic">{subtitle}</span>
                 )}
               </h2>
             </a>

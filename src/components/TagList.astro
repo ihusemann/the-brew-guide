@@ -3,15 +3,16 @@ import Tag from "./Tag.astro";
 
 interface Props {
   tags: string[];
+  color?: 'black' | 'white'
 }
 
-const { tags } = Astro.props;
+const { tags, color = 'black' } = Astro.props;
 ---
 
 <div class="flex space-x-4">
   {
     tags.map((tag) => {
-      return <Tag label={tag} />;
+      return <Tag label={tag} color={color} />;
     })
   }
 </div>

@@ -1,10 +1,56 @@
 ---
+const year = new Date().getFullYear();
 ---
 
-<div class="bg-neutral-800 text-white py-16">
-  <div class="grid grid-cols-3 max-w-2xl mx-auto">
-    <div class="">
-      <div class="text-7xl font-bold tracking-tighter leading-[3.7rem]">The Brew Guide</div>
+<footer class="mt-12 bg-neutral-800 py-12 text-white md:py-16">
+  <div class="mx-auto grid max-w-3xl gap-y-8 items-center grid-cols-5">
+    <div
+      class="text-center col-span-5 md:col-span-2 text-5xl font-bold leading-[3.7rem] tracking-tighter md:text-left md:text-7xl"
+    >
+      The Brew Guide
+    </div>
+    <div class="col-end-4 md:col-end-5">
+      <nav class="flex flex-col">
+        <h2 class="mb-3 text-lg font-semibold tracking-wide text-white">
+          Brew
+        </h2>
+        <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
+          >Guides</a
+        >
+        <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
+          >Recipes</a
+        >
+      </nav>
+    </div>
+    <div class="col-end-5 md:col-end-6">
+      <nav class="flex flex-col">
+        <h2 class="mb-3 text-lg font-semibold tracking-wide text-white">
+          Brew
+        </h2>
+        <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
+          >Guides</a
+        >
+        <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
+          >Recipes</a
+        >
+      </nav>
+    </div>
+
+    <!-- <div>
+      <a href="/guides" class="text-white">Guides</a>
+    </div> -->
+  </div>
+  <div
+    class="mx-auto mt-10 flex max-w-3xl items-center justify-between text-sm text-neutral-400"
+  >
+    <span>&copy; The Brew Guide {year}</span>
+    <div class="flex space-x-6 justify-end">
+      <a href="/privacy-policy" class="hover:underline hover:underline-offset-4"
+        >Privacy Policy</a
+      >
+      <a href="/terms" class="hover:underline hover:underline-offset-4"
+        >Terms & Conditions</a
+      >
     </div>
   </div>
-</div>
+</footer>
