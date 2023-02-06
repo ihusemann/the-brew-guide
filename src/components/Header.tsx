@@ -15,12 +15,12 @@ const Header = ({ children }: Props) => {
   });
   return (
     <>
-      <div className="fixed inset-y-0 top-0 z-50 h-20 w-full">
+      <div className="fixed bg-white inset-y-0 top-0 z-50 h-20 w-full">
         <motion.div
           style={{ opacity: scrollYProgress }}
           className="absolute inset-0 shadow-md"
         ></motion.div>
-        <div className="absolute inset-0 mx-auto flex max-w-5xl items-center justify-between bg-white px-10 py-4">
+        <div className="absolute inset-0 mx-auto flex max-w-5xl items-center justify-between px-10 py-4">
           <a
             href="/"
             className="text-3xl font-black tracking-tighter text-neutral-900"
