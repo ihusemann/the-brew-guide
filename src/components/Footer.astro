@@ -3,14 +3,14 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="mt-12 bg-neutral-800 py-12 text-white md:py-16">
-  <div class="mx-auto grid max-w-3xl gap-y-8 items-center grid-cols-5">
+  <div class="mx-auto grid max-w-3xl grid-cols-6 gap-y-8 gap-x-4 px-6 sm:px-8">
     <div
-      class="text-center col-span-5 md:col-span-2 text-5xl font-bold leading-[3.7rem] tracking-tighter md:text-left md:text-7xl"
+      class="col-span-6 text-center text-5xl font-bold leading-[3.7rem] tracking-tighter md:col-span-3 md:text-left md:text-7xl"
     >
       The Brew Guide
     </div>
-    <div class="col-end-4 md:col-end-5">
-      <nav class="flex flex-col">
+    <div class="col-span-2 col-start-2 md:col-span-1 md:col-start-5">
+      <nav class="flex flex-col items-center md:items-start">
         <h2 class="mb-3 text-lg font-semibold tracking-wide text-white">
           Brew
         </h2>
@@ -22,38 +22,37 @@ const year = new Date().getFullYear();
         >
       </nav>
     </div>
-    <div class="col-end-5 md:col-end-6">
-      <nav class="flex flex-col">
+    <div class="col-span-2 col-start-4 md:col-span-1 md:col-start-6">
+      <nav class="flex flex-col items-center md:items-start">
         <h2 class="mb-3 text-lg font-semibold tracking-wide text-white">
-          Brew
+          Gear
         </h2>
         <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
-          >Guides</a
+          >Brewing</a
         >
         <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
-          >Recipes</a
+          >Grinding</a
+        >
+        <a href="/guides" class="mb-1.5 text-neutral-300 hover:underline"
+          >Accessories</a
         >
       </nav>
     </div>
-
-    <!-- <div>
-      <a href="/guides" class="text-white">Guides</a>
-    </div> -->
   </div>
   <div
-    class="mx-auto mt-10 flex max-w-3xl items-center justify-between text-sm text-neutral-400"
+    class="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-between px-6 text-sm text-neutral-400 sm:flex-row sm:px-8"
   >
-    <span>&copy; The Brew Guide {year}</span>
-    <div class="flex space-x-6 justify-end">
+    <span class="order-last mt-4 sm:order-first sm:mt-0"
+      >&copy; The Brew Guide {year}</span
+    >
+    <div class="flex flex-wrap justify-center space-x-6 md:justify-end">
       <a href="/privacy-policy" class="hover:underline hover:underline-offset-4"
         >Privacy Policy</a
       >
-      <a href="/terms" class="hover:underline hover:underline-offset-4"
-        >Terms & Conditions</a
+
+      <a href="/rss.xml" class="hover:underline hover:underline-offset-4">RSS</a
       >
-      <a href="/rss.xml" class="hover:underline hover:underline-offset-4"
-        >RSS</a
-      >
+      <a href="#" class="hover:underline hover:underline-offset-4">Sitemap</a>
     </div>
   </div>
 </footer>
