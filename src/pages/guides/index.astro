@@ -1,6 +1,7 @@
 ---
 import type { GuideFrontmatter } from "@types";
 import { getCollection } from "astro:content";
+import PostPreview from "src/components/PostPreview.astro";
 import Container from "src/layouts/Container.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
 
@@ -10,30 +11,24 @@ const allGuides = await getCollection("guides");
 ---
 
 <MainLayout>
-  <div class="mx-auto my-16 max-w-3xl">
-    <h1 class="text-7xl font-bold tracking-tighter">Coffee Guides</h1>
-    <div class="mt-8 grid grid-cols-2 gap-4">
-      {
-        allGuides.map(({ slug, data: { title, subtitle, image } }) => (
-          <article>
-            <a href={`guides/${slug}`} class="flex flex-col">
-              <div class="aspect-w-5 aspect-h-4 w-full">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  class="object-cover object-center"
-                />
-              </div>
-              <h2 class="mt-2 text-2xl">
-                <span class="block font-bold">{title}</span>
-                {subtitle && (
-                  <span class="block font-serif italic">{subtitle}</span>
-                )}
-              </h2>
-            </a>
-          </article>
-        ))
-      }
+  <header class="mx-auto mt-9 max-w-5xl px-6 sm:px-8">
+    <div class="h-[30rem] bg-neutral-100">
+      <h1 class="text-3xl font-bold tracking-tight">Coffee Guides</h1>
     </div>
-  </div>
+  </header>
+  <section class="my-12 mx-auto max-w-4xl">
+    <h2 class="text-center text-4xl font-bold tracking-tight">
+      How we curate brew guides
+    </h2>
+    <p class="text-center text-lg text-neutral-600 max-w-2xl mx-auto mt-4">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non nostrum
+      repudiandae expedita sed voluptatum, neque deleniti consequatur.
+      Praesentium modi perspiciatis.
+    </p>
+  </section>
+  <section class="mx-auto mt-12 max-w-5xl px-6 sm:px-8">
+    <div class="my-8 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-3">
+      {allGuides.map((guide) => <PostPreview guide={guide} />)}
+    </div>
+  </section>
 </MainLayout>
