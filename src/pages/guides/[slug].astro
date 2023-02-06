@@ -1,7 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import FeatureSectionItem from "src/components/Guide/FeatureSectionItem.astro";
-import GuideHeader from "src/components/Guide/GuideHeader.astro";
+import TagList from "src/components/TagList.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
@@ -19,10 +19,36 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const { title, description, subtitle, image, tags } = entry.data;
 ---
 
 <MainLayout>
-  <GuideHeader guide={entry} />
+  <header class="mx-auto grid w-full max-w-6xl grid-cols-1 md:grid-cols-12">
+    <div
+      class="h-[32rem] overflow-hidden bg-sky-100 md:col-span-6 lg:col-span-7"
+    >
+      <img
+        src={image.src}
+        alt={image.alt}
+        class="w-full object-cover object-bottom"
+      />
+    </div>
+    <div
+      class="mx-auto max-w-xl py-10 px-8 md:col-span-6 md:py-32 lg:col-span-5"
+    >
+      <TagList tags={tags} />
+
+      <h1 class="mt-6 text-4xl">
+        <span class="inline font-bold">{title}</span>
+        {subtitle && <span class="inline font-serif italic">{subtitle}</span>}
+      </h1>
+
+      <p class="mt-5 mb-8 text-xl">
+        {description}
+      </p>
+    </div>
+  </header>
 
   <section class="grid grid-cols-1 gap-x-6 py-24 px-6 sm:px-8 md:grid-cols-2">
     <div>
