@@ -17,5 +17,6 @@ import image from "@astrojs/image";
 export default defineConfig({
   integrations: [tailwind(), react(), mdx(), image({
     serviceEntryPoint: "@astrojs/image/sharp"
-  })]
+  })], 
+  site: 'https://www.thebrewguide.com'
 });

@@ -5,6 +5,7 @@ export const guideSchema = z.object({
   title: z.string(),
   subtitle: z.string(),
   description: z.string(),
+  pubDate: z.date(),
   tags: z.array(z.string()),
   image: z.object({
     src: z.string(),
