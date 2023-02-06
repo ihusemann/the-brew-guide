@@ -23,7 +23,7 @@ const Header = ({ children }: Props) => {
         <div className="absolute inset-0 mx-auto flex max-w-5xl items-center justify-between px-10 py-4">
           <a
             href="/"
-            className="text-4xl font-black tracking-tighter text-neutral-900"
+            className="text-3xl font-black tracking-tighter text-neutral-900"
           >
             <span className="hidden sm:block">The Brew Guide</span>
             <span className="sm:hidden">TBG</span>

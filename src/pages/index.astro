@@ -1,6 +1,8 @@
 ---
 import { getCollection, getEntryBySlug } from "astro:content";
 import GuideCard from "src/components/Guide/GuideCard.astro";
+import ArrowRightIcon from "src/components/icons/ArrowRightIcon.astro";
+import PostPreview from "src/components/PostPreview.astro";
 import Tag from "src/components/Tag.astro";
 import TagList from "src/components/TagList.astro";
 import Container from "../layouts/Container.astro";
@@ -11,69 +13,24 @@ const featurePost = await getEntryBySlug("guides", "aeropress");
 ---
 
 <MainLayout>
-  <!-- <div class="-mt-20 h-[28rem] bg-sky-100"></div> -->
-  <div class="relative -mt-20 mb-20 h-96 w-full md:h-[32rem]">
-    <div class="absolute -bottom-10 inset-x-0 flex px-6 py-4">
-      <h2 class="text-4xl font-bold text-white">Hey, Make Coffee</h2>
-    </div>
-    <div class="inset-0">
-      <img
-        src="/assets/jannis-brandt-qLFJ0uCF9oY-unsplash.jpg"
-        alt="brewing chemex"
-        class="object-cover object-center"
-      />
-    </div>
-  </div>
-  <section class="mx-auto mt-12 max-w-4xl px-6 sm:px-8">
-    <!-- <a href="/guides/chemex" class="group">
-      <article class="aspect-w-5 aspect-h-3 relative w-full">
-        <div class="absolute inset-0 overflow-hidden">
-          <div class="relative h-full w-full">
-            <div class="absolute inset-x-0 bottom-0 z-10 flex flex-col p-8">
-              <h2
-                class="text-2xl font-bold text-white group-hover:underline group-hover:underline-offset-[6px]"
-              >
-                Dang, Gotta Make Some Chemex
-              </h2>
-              <p class="mt-2 text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                nisi, magni in vitae animi modi.
-              </p>
-              <div class="mt-4">
-                <TagList tags={["Guides", "Recipes"]} color="white" />
-              </div>
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black"
-            >
-            </div>
-            <div class="inset-0 overflow-hidden">
-              <img
-                src="/assets/jannis-brandt-qLFJ0uCF9oY-unsplash.jpg"
-                alt="brewing chemex"
-                class="object-cover object-center"
-              />
-            </div>
-          </div>
-        </div>
-      </article>
-    </a> -->
+  <section class="mx-auto mt-9 max-w-5xl px-6 sm:px-8">
+    <div class="h-[30rem] bg-neutral-100"></div>
+  </section>
 
-    <div class="my-8 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
-      <GuideCard guide={featurePost} size="lg" />
-      <GuideCard guide={featurePost} size="lg" />
-      <GuideCard guide={featurePost} size="lg" />
+  <section class="mx-auto mt-12 max-w-5xl px-6 sm:px-8">
+    <div class="flex items-center justify-between space-x-4">
+      <h2 class="text-xl font-semibold">Latest Guides</h2>
+      <div class="mt-1 h-px grow bg-neutral-400" aria-hidden="true"></div>
+      <a
+        href="/guides"
+        class="text-neutral-600 hover:text-neutral-800"
+      >
+        <span class="inline">See All</span>
+        <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
+      </a>
     </div>
-
-    <h2 class="text-lg font-semibold uppercase tracking-wide text-neutral-600">
-      Latest Posts
-    </h2>
-    <div class="mt-4 grid grid-cols-1 gap-8">
-      <GuideCard guide={featurePost} size="lg" />
-    </div>
-
-    <div class="mt-12 grid grid-cols-1 gap-4">
-      {allGuides.map((guide) => <GuideCard guide={guide} />)}
+    <div class="my-8 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-3">
+      {allGuides.map((guide) => <PostPreview guide={guide} />)}
     </div>
   </section>
 </MainLayout>
