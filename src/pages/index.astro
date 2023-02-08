@@ -9,7 +9,6 @@ import Container from "../layouts/Container.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 
 const allGuides = await getCollection("guides");
-const featurePost = await getEntryBySlug("guides", "aeropress");
 ---
 
 <MainLayout>
@@ -29,7 +28,7 @@ const featurePost = await getEntryBySlug("guides", "aeropress");
         <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
       </a>
     </div>
-    <div class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
+    <div class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-3">
       {allGuides.map((guide) => <PostPreview guide={guide} />)}
     </div>
   </section>
