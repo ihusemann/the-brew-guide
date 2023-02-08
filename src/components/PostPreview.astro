@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import ArrowUpRightIcon from "./icons/ArrowUpRightIcon.astro";
 import TagList from "./TagList.astro";
+import CloudinaryImage from "./CloudinaryImage.astro";
 
 interface Props {
   guide: CollectionEntry<"guides">;
@@ -14,10 +15,11 @@ const { data, slug } = guide;
 <a href={`/guides/${slug}`} class="group">
   <article class="flex flex-col">
     <div class="aspect-w-5 aspect-h-4 sm:aspect-h-5">
-      <img
+      <CloudinaryImage
         src={data.image.src}
         alt={data.image.alt}
-        class="object-cover object-center"
+        width={600}
+        aspectRatio="1:1"
       />
     </div>
     <div class="mt-3">
