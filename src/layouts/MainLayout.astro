@@ -1,4 +1,5 @@
 ---
+import Header from "src/components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Navlinks from "../components/Navlinks.astro";
 import GutterLayout from "./GutterLayout.astro";
@@ -16,18 +17,7 @@ import GutterLayout from "./GutterLayout.astro";
     <title>The Brew Guide</title>
   </head>
   <body class="flex min-h-screen min-w-full flex-col bg-white text-neutral-900">
-    <div class="sticky top-0 z-50 h-20 bg-white">
-      <GutterLayout class="flex justify-between items-center h-full">
-        <div class="relative">
-          <div>
-            <a href="/" class="text-3xl font-black tracking-tighter">The Brew Guide</a>
-          </div>
-        </div>
-        <nav class="flex items-center space-x-8">
-          <Navlinks />
-        </nav>
-      </GutterLayout>
-    </div>
+    <Header />
     <div class="grow">
       <slot />
     </div>

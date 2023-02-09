@@ -1,0 +1,23 @@
+---
+import GutterLayout from "src/layouts/GutterLayout.astro";
+import Navlinks from "./Navlinks.astro";
+
+---
+
+<div class="sticky top-0 z-50 h-20 bg-white">
+  <GutterLayout class="flex justify-between items-center h-full">
+    <div class="relative">
+      <div>
+        <a href="/" class="text-3xl font-black tracking-tighter"
+          >
+          <span class="sm:hidden">TBG</span>
+          <span class="hidden sm:block">The Brew Guide</span>
+          </a
+        >
+      </div>
+    </div>
+    <nav class="flex items-center space-x-8">
+      <Navlinks />
+    </nav>
+  </GutterLayout>
+</div>
