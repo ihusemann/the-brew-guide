@@ -1,5 +1,5 @@
 ---
-import CloudinaryImage from "./CloudinaryImage.astro";
+import S3Image from "./S3Image.astro";
 
 interface Props {
   src: string;
@@ -9,4 +9,5 @@ interface Props {
 const { src, alt } = Astro.props;
 ---
 
-<CloudinaryImage src={src} alt={alt} width={700} aspectRatio="4:3" />
+<!-- <CloudinaryImage src={src} alt={alt} width={700} aspectRatio="4:3" /> -->
+<S3Image src={src} alt={alt} width={700} aspectRatio={4/3} />

@@ -1,0 +1,34 @@
+---
+import { Image } from "@astrojs/image/components";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  aspectRatio: number;
+}
+
+const { src, alt, width, aspectRatio } = Astro.props;
+
+// manually calculating height like this since astro image was complaining about width + aspectRaito props.
+const height = width / aspectRatio;
+
+const url = `${import.meta.env.CLOUDFRONT_DOMAIN}/${src}`;
+
+/**
+ * fit + position determine how the image behaves during cropping (AKA on the server).
+ * class="object-cover" determines how that cropped image behaves in its parent container.
+ */
+---
+
+<Image
+  src={url}
+  alt={alt}
+  width={width}
+  height={height}
+  format="avif"
+  fit="cover"
+  position="entropy"
+  class="object-cover"
+  
+/>

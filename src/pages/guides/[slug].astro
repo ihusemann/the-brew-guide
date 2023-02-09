@@ -1,12 +1,10 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import CloudinaryImage from "src/components/CloudinaryImage.astro";
-import FeatureSectionItem from "src/components/Guide/FeatureSectionItem.astro";
-import CheckIcon from "src/components/icons/CheckIcon.astro";
 import PostImage from "src/components/PostImage.astro";
 import PostPreview from "src/components/PostPreview.astro";
 import TagList from "src/components/TagList.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
+import S3Image from "src/components/S3Image.astro";
 
 export async function getStaticPaths() {
   const guideEntries = await getCollection("guides");
@@ -41,11 +39,11 @@ const allGuides = await getCollection("guides");
           class="object-cover object-center"
         /> -->
         <div>
-          <CloudinaryImage
+          <S3Image
             src={image.src}
             alt={image.alt}
             width={800}
-            aspectRatio="4:3"
+            aspectRatio={4/3}
           />
         </div>
       </div>
