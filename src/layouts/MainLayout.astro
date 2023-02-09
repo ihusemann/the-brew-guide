@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header";
 import Navlinks from "../components/Navlinks.astro";
+import GutterLayout from "./GutterLayout.astro";
 ---
 
 <html lang="en">
@@ -15,13 +15,20 @@ import Navlinks from "../components/Navlinks.astro";
 
     <title>The Brew Guide</title>
   </head>
-  <body
-    class="min-h-screen min-w-full bg-white relative text-neutral-900 flex flex-col"
-  >
-    <Header client:load>
-      <Navlinks />
-    </Header>
-    <div class="pt-20 grow">
+  <body class="flex min-h-screen min-w-full flex-col bg-white text-neutral-900">
+    <div class="sticky top-0 z-50 h-20 bg-white">
+      <GutterLayout class="flex justify-between items-center h-full">
+        <div class="relative">
+          <div>
+            <a href="/" class="text-3xl font-black tracking-tighter">The Brew Guide</a>
+          </div>
+        </div>
+        <nav class="flex items-center space-x-8">
+          <Navlinks />
+        </nav>
+      </GutterLayout>
+    </div>
+    <div class="grow">
       <slot />
     </div>
     <Footer />
