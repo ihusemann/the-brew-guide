@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import S3Image from "./S3Image.astro";
+
+const allGuides = await getCollection("guides");
+
+---
+
+<nav class="grid grid-cols-1 gap-y-8">
+  {
+    allGuides.map((guide) => (
+      <a
+        href={`${guide.slug}`}
+        class="grid grid-cols-[120px_1fr] gap-x-3"
+      >
+        <div class="aspect-w-3 aspect-h-2 w-full">
+          <S3Image
+            src={guide.data.image.src}
+            alt={guide.data.image.alt}
+            width={120}
+            aspectRatio={3 / 2}
+          />
+        </div>
+        <h2 class="text-xl leading-6">
+          <span class="inline font-bold tracking-tight">
+            {guide.data.title}
+          </span>
+          <span class="inline font-serif italic">
+            {guide.data.subtitle}
+          </span>
+        </h2>
+      </a>
+    ))
+  }
+</nav>

@@ -8,6 +8,7 @@ import S3Image from "src/components/S3Image.astro";
 import ColumnLayout from "src/layouts/ColumnLayout.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import { number } from "astro/zod";
+import LatestPosts from "src/components/LatestPosts.astro";
 
 export async function getStaticPaths() {
   const guideEntries = await getCollection("guides");
@@ -25,7 +26,8 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const { title, description, subtitle, image, tags, pubDate, author } = entry.data;
+const { title, description, subtitle, image, tags, pubDate, author } =
+  entry.data;
 
 const allGuides = await getCollection("guides");
 ---
@@ -36,13 +38,11 @@ const allGuides = await getCollection("guides");
       <header class="my-14">
         <ColumnLayout class="lg:items-end gap-y-4 lg:gap-y-0">
           <div>
-            <h1 class="text-5xl">
-              <span class="font-bold tracking-tight lg:block">
-                {title}</span
-              >
-              <span class="font-serif italic lg:block">{subtitle}</span>
+            <h1 class="text-5xl max-w-2xl">
+              <span class="font-bold tracking-tight"> {title}</span>
+              <span class="font-serif italic">{subtitle}</span>
             </h1>
-            <div class="mt-4">
+            <div class="mt-5">
               <TagList tags={tags} />
             </div>
           </div>
@@ -64,57 +64,39 @@ const allGuides = await getCollection("guides");
           </div>
           <div class="flex justify-end space-x-6">
             <div class="mt-2 text-sm uppercase tracking-wide text-neutral-500">
-              {author} // {pubDate.toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}
+              {author} // {
+                pubDate.toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
             </div>
           </div>
-          <div class="prose prose-lg sm:prose-xl prose-p:leading-8 prose-headings:tracking-tight prose-neutral max-w-none">
+          <div
+            class="prose prose-lg prose-neutral max-w-none prose-headings:tracking-tight prose-p:leading-8 sm:prose-xl"
+          >
             <div class="mx-auto max-w-xl">
               <Content components={{ img: PostImage }} />
             </div>
           </div>
         </div>
-        <div class="hidden lg:block relative">
+        <div class="relative hidden lg:block">
           <aside class="sticky top-24">
-            <div class="h-[600px] w-full bg-neutral-100"></div>
+            <div class="h-[500px] w-full bg-neutral-100"></div>
 
             <div
               class="mt-16 mb-4 text-sm uppercase tracking-wide text-neutral-500"
             >
               Latest Posts
             </div>
-            <nav class="grid grid-cols-1 gap-y-8">
-              {
-                [...allGuides, ...allGuides, ...allGuides].map((guide) => (
-                  <a
-                    href={`${guide.slug}`}
-                    class="grid grid-cols-[120px_1fr] gap-x-3"
-                  >
-                    <div class="aspect-w-3 aspect-h-2 w-full">
-                      <S3Image
-                        src={guide.data.image.src}
-                        alt={guide.data.image.alt}
-                        width={120}
-                        aspectRatio={3 / 2}
-                      />
-                    </div>
-                    <h2 class="text-xl leading-6">
-                      <span class="inline font-bold tracking-tight">
-                        {guide.data.title}
-                      </span>
-                      <span class="inline font-serif italic">
-                        {guide.data.subtitle}
-                      </span>
-                    </h2>
-                  </a>
-                ))
-              }
-            </nav>
+            <LatestPosts />
           </aside>
         </div>
       </ColumnLayout>
 
       <div
-        class="mt-20 mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 border-t-2 border-neutral-800"
+        class="mt-20 mb-8 grid grid-cols-1 gap-x-8 gap-y-10 border-t-2 border-neutral-800 sm:grid-cols-2 lg:grid-cols-3"
       >
         <div class="col-span-full">
           <h2 class="mt-4 text-left text-2xl font-bold tracking-tight">
@@ -122,7 +104,7 @@ const allGuides = await getCollection("guides");
           </h2>
         </div>
         {
-          [...allGuides, ...allGuides, ...allGuides].map((guide) => (
+          allGuides.map((guide) => (
             <PostPreview guide={guide} />
           ))
         }
