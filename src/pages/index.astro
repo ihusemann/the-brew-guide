@@ -2,29 +2,28 @@
 import { getCollection } from "astro:content";
 import ArrowRightIcon from "src/components/icons/ArrowRightIcon.astro";
 import PostPreview from "src/components/PostPreview.astro";
+import GutterLayout from "src/layouts/GutterLayout.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 
 const allGuides = await getCollection("guides");
 ---
 
 <MainLayout>
-  <section class="mx-auto mt-9 max-w-5xl px-6 sm:px-8">
-    <div class="h-[30rem] bg-neutral-100"></div>
-  </section>
-
-  <section class="mx-auto mt-12 max-w-5xl px-6 sm:px-8">
-    <div class="flex items-center justify-between space-x-4">
-      <h2 class="text-xl font-semibold">Latest Guides</h2>
-      <div class="mt-1 h-px grow bg-neutral-300" aria-hidden="true"></div>
-      <a href="/guides" class="text-neutral-600 hover:text-neutral-800">
-        <span class="inline">See All</span>
-        <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
-      </a>
-    </div>
-    <div
-      class="my-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
-    >
-      {allGuides.map((guide) => <PostPreview guide={guide} />)}
-    </div>
-  </section>
+  <GutterLayout>
+    <section class="mx-auto mt-12">
+      <div class="flex items-center justify-between space-x-4">
+        <h2 class="text-xl font-semibold">Latest Guides</h2>
+        <div class="mt-1 h-px grow bg-neutral-300" aria-hidden="true"></div>
+        <a href="/guides" class="text-neutral-600 hover:text-neutral-800">
+          <span class="inline">See All</span>
+          <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
+        </a>
+      </div>
+      <div
+        class="my-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {allGuides.map((guide) => <PostPreview guide={guide} />)}
+      </div>
+    </section>
+  </GutterLayout>
 </MainLayout>
