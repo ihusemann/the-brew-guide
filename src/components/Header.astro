@@ -1,21 +1,27 @@
 ---
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import MugLogo from "./icons/MugLogo.astro";
+import DisappearingNavbar from "./DisappearingNavbar";
 import Navlinks from "./Navlinks.astro";
 ---
 
-<div class="sticky top-0 z-50 h-20 bg-white">
-  <GutterLayout class="flex justify-between items-center h-full relative">
-    <a href="/" class="absolute inset-y-0 left-3 w-14 flex items-center">
+<div class="sticky top-0 z-50 h-20">
+  <GutterLayout class="h-full relative">
+    <a href="/" class="absolute inset-y-0 left-3 flex w-14 items-center">
       <MugLogo class="h-10 w-10 text-black" />
     </a>
 
-    <a href="/" class="flex items-center pl-12 md:pl-0 text-2xl font-bold tracking-tighter">
-      <span class="hidden sm:block">The Brew Guide</span>
-    </a>
+    <DisappearingNavbar client:load>
+      <a
+        href="/"
+        class="flex items-center pl-12 text-2xl font-bold tracking-tighter md:pl-0"
+      >
+        <span class="hidden sm:block">The Brew Guide</span>
+      </a>
 
-    <nav class="flex items-center space-x-8">
-      <Navlinks />
-    </nav>
+      <nav class="flex items-center space-x-8">
+        <Navlinks />
+      </nav>
+    </DisappearingNavbar>
   </GutterLayout>
 </div>
