@@ -14,8 +14,8 @@ const DisappearingNavbar = ({ children }: Props) => {
     if (scrollY.get() < scrollY.getPrevious()) {
       // scrolling up
       setHidden(false);
-    } else if (scrollY.get() > 100 && scrollY.get() > scrollY.getPrevious()) {
-      // scrolling down
+    } else if (scrollY.get() > 100 && scrollY.get() > scrollY.getPrevious() && window.innerWidth > 768) {
+      // scrolling down; is disabled for < md breakpoint
       setHidden(true);
     }
   }
