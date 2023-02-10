@@ -27,7 +27,7 @@ const { data, slug } = guide;
         <h2
           class="mb-1.5 truncate text-xl font-bold tracking-tight group-hover:underline group-hover:underline-offset-4"
         >
-          {data.title}
+          {data.title.replace(/[^a-zA-Z ]/g, "")}
         </h2>
         <div class="absolute inset-y-0 right-0 flex items-center">
           <ArrowUpRightIcon
