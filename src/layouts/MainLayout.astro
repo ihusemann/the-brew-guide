@@ -11,7 +11,7 @@ import GutterLayout from "./GutterLayout.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Google tag (gtag.js) -->
     <script
       type="text/partytown"
@@ -27,7 +27,18 @@ import GutterLayout from "./GutterLayout.astro";
       gtag("config", "G-KZ235Z2XSE");
     </script>
 
-    <link rel="stylesheet" href="https://use.typekit.net/tjn4tzd.css" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://use.typekit.net/tjn4tzd.css"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://use.typekit.net/tjn4tzd.css"
+      /></noscript
+    >
 
     <title>The Brew Guide</title>
   </head>
