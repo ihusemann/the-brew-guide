@@ -20,8 +20,19 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), mdx(), image({
-    serviceEntryPoint: "@astrojs/image/sharp"
-  }), sitemap(), partytown()],
-  site: 'https://www.thebrewguide.com'
+  integrations: [
+    tailwind(),
+    react(),
+    mdx(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+    sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
+  site: "https://www.thebrewguide.com",
 });
