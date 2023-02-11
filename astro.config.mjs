@@ -30,5 +30,5 @@ export default defineConfig({
       forward: ["dataLayer.push"]
     }
   }), robotsTxt()],
-  site: "https://www.thebrewguide.com"
+  site: "https://www.thebrewguide.com", 
 });
