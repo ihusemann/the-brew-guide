@@ -4,9 +4,14 @@ import PostPreview from "src/components/PostPreview.astro";
 import ScrollingHero from "src/components/ScrollingHero";
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
+import { SEO } from "astro-seo";
 
 const allGuides = await getCollection("guides");
 ---
+
+<head>
+  <SEO title="Guides | The Brew Guide" description="Brew guides to up your home coffee and espresso game." />
+</head>
 
 <MainLayout>
   <ScrollingHero client:load />

@@ -7,8 +7,9 @@ import MainLayout from "src/layouts/MainLayout.astro";
 import S3Image from "src/components/S3Image.astro";
 import ColumnLayout from "src/layouts/ColumnLayout.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
-import { number } from "astro/zod";
 import LatestPosts from "src/components/LatestPosts.astro";
+import { SEO } from "astro-seo";
+import { makeCloudfrontDomain } from "src/util";
 
 export async function getStaticPaths() {
   const guideEntries = await getCollection("guides");
@@ -28,9 +29,29 @@ const { Content } = await entry.render();
 
 const { title, description, subtitle, image, tags, pubDate, author } =
   entry.data;
+const { slug } = entry;
 
 const allGuides = await getCollection("guides");
 ---
+
+<head>
+  <SEO
+    title={`${title} ${subtitle} | The Brew Guide`}
+    description={description}
+    openGraph={{
+      basic: {
+        title: `${title} ${subtitle}`,
+        type: "website",
+        image: makeCloudfrontDomain(image.src),
+        url: `${Astro.site}guides/${slug}`,
+      },
+      image: {
+        url: makeCloudfrontDomain(image.src),
+        alt: image.alt,
+      },
+    }}
+  />
+</head>
 
 <MainLayout>
   <article>
@@ -38,7 +59,7 @@ const allGuides = await getCollection("guides");
       <header class="my-14">
         <ColumnLayout class="lg:items-end gap-y-4 lg:gap-y-0">
           <div>
-            <h1 class="text-5xl max-w-2xl">
+            <h1 class="max-w-2xl text-5xl">
               <span class="font-bold tracking-tight"> {title}</span>
               <span class="font-serif italic">{subtitle}</span>
             </h1>
@@ -63,14 +84,22 @@ const allGuides = await getCollection("guides");
             />
           </div>
           <div class="flex justify-end space-x-6">
-            <div class="mt-2 text-sm uppercase tracking-wide text-neutral-500">
-              {author} // {
-                pubDate.toLocaleDateString("en-us", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })
-              }
+            <div
+              class="mt-2 flex space-x-2 text-sm uppercase tracking-wide text-neutral-500"
+            >
+              <a class="hover:text-neutral-600" href={`/authors/${author.slug}`}
+                >{author.name}</a
+              >
+              <span>//</span>
+              <span
+                >{
+                  pubDate.toLocaleDateString("en-us", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                }</span
+              >
             </div>
           </div>
           <div
@@ -86,9 +115,7 @@ const allGuides = await getCollection("guides");
             <!-- an ad can go here -->
             <!-- <div class="h-[500px] w-full bg-neutral-100"></div> -->
 
-            <div
-              class="mb-4 text-sm uppercase tracking-wide text-neutral-500"
-            >
+            <div class="mb-4 text-sm uppercase tracking-wide text-neutral-500">
               Latest Posts
             </div>
             <LatestPosts />
@@ -104,11 +131,7 @@ const allGuides = await getCollection("guides");
             You might also like
           </h2>
         </div>
-        {
-          allGuides.map((guide) => (
-            <PostPreview guide={guide} />
-          ))
-        }
+        {allGuides.map((guide) => <PostPreview guide={guide} />)}
       </div>
     </GutterLayout>
   </article>

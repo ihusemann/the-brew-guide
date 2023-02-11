@@ -4,9 +4,17 @@ import ArrowRightIcon from "src/components/icons/ArrowRightIcon.astro";
 import PostPreview from "src/components/PostPreview.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import { SEO } from "astro-seo";
 
 const allGuides = await getCollection("guides");
 ---
+
+<head>
+  <SEO
+    title="The Brew Guide"
+    description="Brew up better coffee at home!  The Brew Guide has everything you need to get up-and-running with exceptional coffee and espresso."
+  />
+</head>
 
 <MainLayout>
   <GutterLayout>
