@@ -10,7 +10,7 @@ const allGuides = await getCollection("guides");
   {
     allGuides.map((guide) => (
       <a
-        href={`${guide.slug}`}
+        href={`/guides/${guide.slug}`}
         class="grid grid-cols-[120px_1fr] gap-x-3"
       >
         <div class="aspect-w-3 aspect-h-2 w-full">
