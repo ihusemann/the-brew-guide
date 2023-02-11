@@ -34,7 +34,7 @@ const DisappearingNavbar = ({ children }: Props) => {
       variants={variants}
       animate={hidden ? "hidden" : "visible"}
       transition={{ ease: "linear", duration: 0.18 }}
-      className="w-full flex h-full justify-between bg-white"
+      className="w-full h-full bg-white"
     >
       {children}
     </motion.div>

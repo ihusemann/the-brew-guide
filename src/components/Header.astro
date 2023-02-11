@@ -6,12 +6,12 @@ import Navlinks from "./Navlinks.astro";
 ---
 
 <div class="sticky top-0 z-50 h-16 md:h-20">
-  <GutterLayout class="h-full relative">
-    <a href="/" class="absolute inset-y-0 left-3 flex w-14 items-center z-10">
-      <MugLogo class="h-10 w-10 text-black" />
-    </a>
+  <a href="/" class="absolute inset-y-0 left-4 xl:left-[calc(((100vw-1280px)/2)+16px)] z-10 flex w-14 items-center">
+    <MugLogo class="h-10 w-10 text-black" />
+  </a>
+  <DisappearingNavbar client:load>
+    <GutterLayout class="h-full relative flex justify-between">
 
-    <DisappearingNavbar client:load>
       <a
         href="/"
         class="flex items-center pl-12 text-2xl font-bold tracking-tighter md:pl-0"
@@ -22,6 +22,6 @@ import Navlinks from "./Navlinks.astro";
       <nav class="flex items-center space-x-8">
         <Navlinks />
       </nav>
-    </DisappearingNavbar>
-  </GutterLayout>
+    </GutterLayout>
+  </DisappearingNavbar>
 </div>
