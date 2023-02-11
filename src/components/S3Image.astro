@@ -1,19 +1,43 @@
 ---
 import { Image } from "@astrojs/image/components";
+import { makeCloudfrontDomain } from "src/util";
 
+type CropPosition =
+  | "top"
+  | "right top"
+  | "right"
+  | "right bottom"
+  | "bottom"
+  | "left bottom"
+  | "left"
+  | "left top"
+  | "north"
+  | "northeast"
+  | "east"
+  | "southeast"
+  | "south"
+  | "southwest"
+  | "west"
+  | "northwest"
+  | "center"
+  | "centre"
+  | "cover"
+  | "entropy"
+  | "attention";
 interface Props {
   src: string;
   alt: string;
   width: number;
   aspectRatio: number;
+  position?: CropPosition;
 }
 
-const { src, alt, width, aspectRatio } = Astro.props;
+const { src, alt, width, aspectRatio, position = "entropy" } = Astro.props;
 
 // manually calculating height like this since astro image was complaining about width + aspectRaito props.
 const height = width / aspectRatio;
 
-const url = `${import.meta.env.CLOUDFRONT_DOMAIN}/${src}`;
+const url = makeCloudfrontDomain(src);
 
 /**
  * fit + position determine how the image behaves during cropping (AKA on the server).
@@ -28,7 +52,7 @@ const url = `${import.meta.env.CLOUDFRONT_DOMAIN}/${src}`;
   height={height}
   format="avif"
   fit="cover"
-  position="entropy"
+  position={position}
   class="object-cover"
   loading="lazy"
 />
