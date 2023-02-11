@@ -3,7 +3,7 @@ import "src/components/ScrollingHero.css";
 
 const ScrollingHero = () => {
   return (
-    <div className="py-12">
+    <div className="py-12 overflow-x-hidden">
       <motion.h1
         aria-hidden="true"
         animate={{ x: "-1000px" }}
