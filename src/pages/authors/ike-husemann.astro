@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import PostPreview from "src/components/PostPreview/PostPreview.astro";
+import PostPreviewGrid from "src/components/PostPreview/PostPreviewGrid.astro";
+import S3Image from "src/components/S3Image.astro";
+import GutterLayout from "src/layouts/GutterLayout.astro";
+import MainLayout from "src/layouts/MainLayout.astro";
+
+const allPosts = await getCollection("guides");
+---
+
+<MainLayout>
+  <GutterLayout>
+    <div class="mt-10 mb-14">
+      <h1 class="text-4xl font-bold tracking-tight">Ike Husemann</h1>
+      <p class="font-medium text-neutral-600">Editor & Founder</p>
+      <div class="my-6 grid grid-cols-[100px_1fr] items-center gap-x-6">
+        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-full">
+          <S3Image
+            src="IMG_1586.jpeg"
+            alt="author profile picture"
+            width={100}
+            aspectRatio={1}
+            position="center"
+          />
+        </div>
+        <p class="max-w-lg text-lg">
+          Ike is a Chicago-based developer and lover of coffee. When he's not
+          holed up in his office coding, you can find him backpacking, playing
+          guitar, skiing, or fanatically researching his latest hobby.
+        </p>
+      </div>
+    </div>
+
+    <PostPreviewGrid>
+      {allPosts.map((post) => <PostPreview guide={post} />)}
+    </PostPreviewGrid>
+  </GutterLayout>
+</MainLayout>

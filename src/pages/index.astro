@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import ArrowRightIcon from "src/components/icons/ArrowRightIcon.astro";
-import PostPreview from "src/components/PostPreview.astro";
+import PostPreview from "src/components/PostPreview/PostPreview.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { SEO } from "astro-seo";
+import PostPreviewGrid from "src/components/PostPreview/PostPreviewGrid.astro";
 
 const allGuides = await getCollection("guides");
 ---
@@ -27,10 +28,10 @@ const allGuides = await getCollection("guides");
           <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
         </a>
       </div>
-      <div
-        class="my-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {allGuides.map((guide) => <PostPreview guide={guide} />)}
+      <div class="my-8">
+        <PostPreviewGrid>
+          {allGuides.map((guide) => <PostPreview guide={guide} />)}
+        </PostPreviewGrid>
       </div>
     </section>
   </GutterLayout>
