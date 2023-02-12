@@ -18,13 +18,19 @@ const allGuides = await getCollection("guides");
 </head>
 
 <MainLayout>
-  <ScrollingHero client:load />
+  <ScrollingHero client:load label="Brew Guides" />
 
   <GutterLayout>
     <section class="mt-12">
       <div class="my-8">
         <PostPreviewGrid>
-          {allGuides.map((guide) => <PostPreview guide={guide} />)}
+          {
+            allGuides.map((guide) => (
+              <PostPreview
+                post={{ url: `/guides/${guide.slug}`, ...guide.data }}
+              />
+            ))
+          }
         </PostPreviewGrid>
       </div>
     </section>
