@@ -33,7 +33,11 @@ const allPosts = await getCollection("guides");
     </div>
 
     <PostPreviewGrid>
-      {allPosts.map((post) => <PostPreview guide={post} />)}
+      {
+        allPosts.map((post) => (
+          <PostPreview post={{ url: `/guides/${post.slug}`, ...post.data }} />
+        ))
+      }
     </PostPreviewGrid>
   </GutterLayout>
 </MainLayout>
