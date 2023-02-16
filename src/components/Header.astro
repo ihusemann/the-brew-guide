@@ -6,7 +6,7 @@ import Navlinks from "./Navlinks.astro";
 ---
 
 <div class="sticky top-0 z-50 h-16 md:h-20">
-  <a href="/" aria-label="Return home" class="absolute inset-y-0 left-4 xl:left-[calc(((100vw-1280px)/2)+16px)] z-10 flex w-14 items-center">
+  <a href="/" aria-label="Return home" class="absolute inset-y-0 left-4 xl:left-[max(16px,calc(((100vw-1280px)/2)+8px))] z-10 flex w-14 items-center">
     <MugLogo class="h-10 w-10 text-black" />
   </a>
   <DisappearingNavbar client:load>
