@@ -1,3 +1,2 @@
-import { makeCloudfrontDomain } from "./cloudfront";
-
-export { makeCloudfrontDomain };
+export { makeCloudfrontDomain } from "./cloudfront";
+export { getPublishedPosts } from "./getPublishedCollection";

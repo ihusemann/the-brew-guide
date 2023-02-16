@@ -1,39 +1,44 @@
 ---
+import { SEO } from "astro-seo";
 import { CollectionEntry, getCollection } from "astro:content";
-import PostImage from "src/components/PostImage.astro";
-import PostPreview from "src/components/PostPreview/PostPreview.astro";
-import PostPreviewGrid from "src/components/PostPreview/PostPreviewGrid.astro";
-import TagList from "src/components/TagList.astro";
-import MainLayout from "src/layouts/MainLayout.astro";
 import S3Image from "src/components/S3Image.astro";
+import TagList from "src/components/TagList.astro";
 import ColumnLayout from "src/layouts/ColumnLayout.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
-import LatestPosts from "src/components/LatestPosts.astro";
-import { SEO } from "astro-seo";
+import MainLayout from "src/layouts/MainLayout.astro";
 import { makeCloudfrontDomain } from "src/util";
 import Prose from "src/components/Prose.astro";
+import PostImage from "src/components/PostImage.astro";
+import LatestPosts from "src/components/LatestPosts.astro";
+import PostPreviewGrid from "src/components/PostPreview/PostPreviewGrid.astro";
+import PostPreview from "src/components/PostPreview/PostPreview.astro";
+
+interface Props {
+  entry: CollectionEntry<"posts">;
+}
 
 export async function getStaticPaths() {
-  const guideEntries = await getCollection("guides");
+  const postEntries = await getCollection("posts").then((res) =>
+    res.filter(({ data }) => !data.isDraft)
+  );
 
-  return guideEntries.map((entry) => ({
+  return postEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
-interface Props {
-  entry: CollectionEntry<"guides">;
-}
+const allPosts = await getCollection("posts").then((res) =>
+  res.filter(({ data }) => !data.isDraft)
+);
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const { title, description, subtitle, image, tags, pubDate, author } =
-  entry.data;
-const { slug } = entry;
-
-const allGuides = await getCollection("guides");
+const {
+  slug,
+  data: { title, description, image, author, tags, pubDate, subtitle },
+} = entry;
 ---
 
 <head>
@@ -129,10 +134,8 @@ const allGuides = await getCollection("guides");
             </h2>
           </div>
           {
-            allGuides.map((guide) => (
-              <PostPreview
-                post={{ url: `/guides/${guide.slug}`, ...guide.data }}
-              />
+            allPosts.map((post) => (
+              <PostPreview post={post} />
             ))
           }
         </PostPreviewGrid>

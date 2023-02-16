@@ -1,10 +1,10 @@
-import { defineCollection, z } from "astro:content";
-import { guideSchema } from "../schemas";
+import { defineCollection } from "astro:content";
+import { postSchema } from "../schemas";
 
-const guideCollection = defineCollection({
-  schema: guideSchema,
+const postCollection = defineCollection({
+  schema: postSchema,
 });
 
 export const collections = {
-  guides: guideCollection,
+  posts: postCollection,
 };

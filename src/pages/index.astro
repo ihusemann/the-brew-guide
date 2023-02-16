@@ -9,17 +9,10 @@ import PostPreviewGrid from "src/components/PostPreview/PostPreviewGrid.astro";
 import S3Image from "src/components/S3Image.astro";
 import ArrowUpRightIcon from "src/components/icons/ArrowUpRightIcon.astro";
 import ProductCard from "src/components/ProductCard.astro";
+import { getPublishedPosts } from "src/util";
+import ScrollingHero from "src/components/ScrollingHero";
 
-const allGuides = await getCollection("guides");
-const allGearLists = await getCollection("gear");
-
-const allPosts = [
-  ...allGuides.map((guide) => ({
-    url: `/guides/${guide.slug}`,
-    ...guide.data,
-  })),
-  ...allGearLists.map((gear) => ({ url: `/gear/${gear.slug}`, ...gear.data })),
-];
+const posts = await getPublishedPosts();
 ---
 
 <head>
@@ -30,21 +23,10 @@ const allPosts = [
 </head>
 
 <MainLayout>
+  <ScrollingHero client:load label="The Brew Guide" />
   <GutterLayout>
-    <section class="mx-auto mt-12">
-      <div class="flex items-center justify-between space-x-4">
-        <h2 class="text-xl font-semibold">Latest Guides</h2>
-        <div class="mt-1 h-px grow bg-neutral-300" aria-hidden="true"></div>
-        <a href="/guides" class="text-neutral-600 hover:text-neutral-800">
-          <span class="inline">See All</span>
-          <ArrowRightIcon class="h-4 w-4 inline stroke-2" />
-        </a>
-      </div>
-      <div class="my-8">
-        <PostPreviewGrid>
-          {allPosts.map((post) => <PostPreview post={post} />)}
-        </PostPreviewGrid>
-      </div>
-    </section>
+    <PostPreviewGrid>
+      {posts.map((post) => <PostPreview post={post} />)}
+    </PostPreviewGrid>
   </GutterLayout>
 </MainLayout>

@@ -1,0 +1,52 @@
+---
+import ArrowUpRightIcon from "./icons/ArrowUpRightIcon.astro";
+import S3Image from "./S3Image.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  href: string;
+}
+
+const {
+  title,
+  description,
+  image: { src, alt },
+  href,
+} = Astro.props;
+---
+
+<div
+  class="not-prose mx-auto grid grid-cols-1 items-center gap-6 rounded-xl border border-neutral-800 p-4 sm:grid-cols-[200px_1fr]"
+>
+  <a
+    href={href}
+    target="_blank"
+    class="aspect-h-5 aspect-w-5 w-full overflow-hidden rounded-md border-neutral-800 sm:aspect-w-4"
+  >
+    <S3Image src={src} alt={alt} width={400} aspectRatio={4 / 5} />
+  </a>
+  <div class="flex flex-col items-start">
+    <a href={href} target="_blank" class="text-3xl font-bold tracking-tight">
+      {title}
+    </a>
+    <p class="mt-2 text-lg text-neutral-600">
+      {description}
+    </p>
+    <a
+      class="mt-4 flex items-center rounded-lg border border-neutral-800 px-4 py-1.5 font-medium no-underline transition-all ease-out hover:bg-neutral-800 hover:text-white"
+      href={href}
+      target="_blank"
+    >
+      <span>View on Amazon</span>
+      <ArrowUpRightIcon
+        class="h-4 w-4 stroke-2 ml-2 mt-0.5"
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+</div>

@@ -12,7 +12,7 @@ const image = z.object({
 
 const tags = z.array(z.string());
 
-export const guideSchema = z.object({
+export const postSchema = z.object({
   isDraft: z.boolean(),
   title: z.string(),
   subtitle: z.string(),
@@ -21,15 +21,4 @@ export const guideSchema = z.object({
   pubDate: z.date(),
   tags,
   image,
-});
-
-export const gearSchema = z.object({
-  isDraft: z.boolean(),
-  title: z.string(),
-  subtitle: z.string(),
-  description: z.string(),
-  author,
-  pubDate: z.date(),
-  image,
-  tags,
 });
