@@ -1,0 +1,16 @@
+---
+import ScrollingHero from "src/components/ScrollingHero";
+import GutterLayout from "src/layouts/GutterLayout.astro";
+import MainLayout from "src/layouts/MainLayout.astro";
+---
+
+<MainLayout>
+  <ScrollingHero client:load label="404" />
+  <GutterLayout>
+    <div class="flex h-full flex-col items-center justify-center">
+      <h1 class="sr-only">404 - page not found</h1>
+      <p class="text-4xl font-bold mb-4">What are you?  Decaffeinated?</p>
+      <a class="text-xl" href="/">Back to safety</a>
+    </div>
+  </GutterLayout>
+</MainLayout>
