@@ -1,6 +1,6 @@
 ---
 import { SEO } from "astro-seo";
-import { CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import S3Image from "src/components/S3Image.astro";
 import TagList from "src/components/TagList.astro";
 import ColumnLayout from "src/layouts/ColumnLayout.astro";
@@ -26,8 +26,8 @@ export async function getStaticPaths() {
   }));
 }
 
-const allPosts = await getCollection("posts").then((res) =>
-  res.filter(({ data }) => !data.isDraft)
+const allPosts = await getPublishedPosts().then((res) =>
+  res.filter(({ slug }) => slug !== Astro.url.pathname.replace(/\//, ""))
 );
 
 const { entry } = Astro.props;
@@ -131,11 +131,7 @@ const {
               You might also like
             </h2>
           </div>
-          {
-            allPosts.map((post) => (
-              <PostPreview post={post} />
-            ))
-          }
+          {allPosts.map((post) => <PostPreview post={post} />)}
         </PostPreviewGrid>
       </div>
     </GutterLayout>

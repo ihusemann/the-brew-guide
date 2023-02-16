@@ -2,17 +2,16 @@
 import { getPublishedPosts } from "src/util";
 import S3Image from "./S3Image.astro";
 
-const posts = await getPublishedPosts();
+const allPosts = await getPublishedPosts();
 
+// don't suggest the current post
+const posts = allPosts.filter(({ slug }) => slug !== Astro.url.pathname.replace(/\//, ""));
 ---
 
 <nav class="grid grid-cols-1 gap-y-8">
   {
     posts.map((post) => (
-      <a
-        href={post.slug}
-        class="grid grid-cols-[120px_1fr] gap-x-3"
-      >
+      <a href={post.slug} class="grid grid-cols-[120px_1fr] gap-x-3">
         <div class="aspect-w-3 aspect-h-2 w-full">
           <S3Image
             src={post.data.image.src}
@@ -22,12 +21,8 @@ const posts = await getPublishedPosts();
           />
         </div>
         <h2 class="text-xl leading-6">
-          <span class="inline font-bold tracking-tight">
-            {post.data.title}
-          </span>
-          <span class="inline font-serif italic">
-            {post.data.subtitle}
-          </span>
+          <span class="inline font-bold tracking-tight">{post.data.title}</span>
+          <span class="inline font-serif italic">{post.data.subtitle}</span>
         </h2>
       </a>
     ))
