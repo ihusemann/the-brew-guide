@@ -6,7 +6,7 @@ import TagList from "src/components/TagList.astro";
 import ColumnLayout from "src/layouts/ColumnLayout.astro";
 import GutterLayout from "src/layouts/GutterLayout.astro";
 import MainLayout from "src/layouts/MainLayout.astro";
-import { makeCloudfrontDomain } from "src/util";
+import { getPublishedPosts, makeCloudfrontDomain } from "src/util";
 import Prose from "src/components/Prose.astro";
 import PostImage from "src/components/PostImage.astro";
 import LatestPosts from "src/components/LatestPosts.astro";
@@ -18,11 +18,9 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const postEntries = await getCollection("posts").then((res) =>
-    res.filter(({ data }) => !data.isDraft)
-  );
+  const posts = await getPublishedPosts();
 
-  return postEntries.map((entry) => ({
+  return posts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
