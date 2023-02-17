@@ -6,13 +6,13 @@ interface Props {
   numRepeat?: number;
 }
 
-const ScrollingHero = ({ label, numRepeat = 10 }: Props) => {
+const ScrollingHero = ({ label, numRepeat = 30 }: Props) => {
   return (
     <div className="overflow-x-hidden py-12">
       <motion.h1
         aria-hidden="true"
-        animate={{ x: "-1000px" }}
-        transition={{ duration: 35, ease: "linear", repeat: Infinity }}
+        animate={{ x: -30000 }}
+        transition={{ duration: 900, ease: "linear", repeat: Infinity }}
         className="text-outline whitespace-nowrap stroke-black text-7xl font-bold uppercase tracking-wider text-transparent sm:text-9xl lg:text-[12rem]"
       >
         {`${label} `.repeat(numRepeat)}
