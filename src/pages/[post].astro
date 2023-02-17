@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   const posts = await getPublishedPosts();
 
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { post: entry.slug },
     props: { entry },
   }));
 }
