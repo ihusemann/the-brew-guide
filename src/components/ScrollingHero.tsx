@@ -8,7 +8,7 @@ interface Props {
 
 const ScrollingHero = ({ label, numRepeat = 30 }: Props) => {
   return (
-    <div className="overflow-x-hidden py-12">
+    <div className="overflow-x-hidden py-12 cursor-default">
       <motion.h1
         aria-hidden="true"
         animate={{ x: -30000 }}
